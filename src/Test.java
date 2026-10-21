@@ -1,4 +1,3 @@
-import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
@@ -18,24 +17,33 @@ public class Test {
         System.out.println("find s9 " + (player.findSong("s9") != null ? player.findSong("s9").title  : "null"));
 
         System.out.println("--- 3. Play and move forward ---");
-        System.out.println("play s1: " + (player.play("s1") != null ? player.play("s1").title : "null"));
-        System.out.println("play s9: " + (player.play("s9") != null ? player.play("s9").title : "null"));
-        System.out.println("next: " + (player.next() != null ? player.next().title : "null"));
-        System.out.println("next: " + (player.next() != null ? player.next().title : "null"));
+        Song playFirst = player.play("s1");
+        System.out.println("play s1: " + (playFirst != null ? playFirst.title : "null"));
+
+        Song playSecond = player.play("s9");
+        System.out.println("play s9: " + (playSecond != null ? playSecond.title : "null"));
+
+        Song firstNext = player.next();
+        System.out.println("next: " + (firstNext != null ? firstNext.title : "null"));
+        Song secondNext = player.next();
+        System.out.println("next: " + (secondNext != null ? secondNext.title : "null"));
         System.out.println("history: " + player.showHistory());
 
         System.out.println("--- 4. Up next ---");
         System.out.println(player.queueLater("s6"));
-        System.out.println(player.queueNext("s1"));
         System.out.println(player.queueNext("s5"));
+        System.out.println(player.queueNext("s1"));
         System.out.println("queue s9: " + player.queueLater("s9"));
         System.out.println("up next: " + player.showUpNext());
-        System.out.println("next: " + (player.next() != null ? player.next().title : "null"));
+        Song queuedNext = player.next();
+        System.out.println("next: " + (queuedNext != null ? queuedNext.title : "null"));
         System.out.println("now playing: " + (player.nowPlaying() != null ? player.nowPlaying().title : "null"));
         System.out.println("history: " + player.showHistory());
 
         System.out.println("--- 5. Back button ---");
-        System.out.println("back: " + (player.back() != null ? player.back().title : "null"));
+        Song firstBack = player.back();
+        System.out.println("back: " + (firstBack != null ? firstBack.title : "null"));
+
         System.out.println("up next: " + player.showUpNext());
         System.out.println("history: " + player.showHistory());
 
@@ -47,11 +55,15 @@ public class Test {
         System.out.println("up next: " + player.showUpNext());
 
         System.out.println("--- 7. Removed songs are skipped ---");
-        System.out.println("next: " + (player.next() != null ? player.next().title : "null"));
-        System.out.println("next: " + (player.next() != null ? player.next().title : "null"));
-        System.out.println("next at end: " + (player.next() != null ? player.next().title : "null"));
+        Song firstResult = player.next();
+        System.out.println("next: " + (firstResult != null ? firstResult.title : "null"));
+        Song secondResult = player.next();
+        System.out.println("next: " + (secondResult != null ? secondResult.title : "null"));
+        Song endResult = player.next();
+        System.out.println("next at end: " + (endResult != null ? endResult.title : "null"));
         System.out.println("now playing: " + (player.nowPlaying() != null ? player.nowPlaying().title : "null"));
-        System.out.println("back: " + (player.back() != null ? player.back().title : "null"));
+        Song previous = player.back();
+        System.out.println("back: " + (previous != null ? previous.title : "null"));
         System.out.println("up next: " + player.showUpNext());
 
         System.out.println("--- 8. Play counts ---");
@@ -62,8 +74,10 @@ public class Test {
 
         System.out.println("--- 9. Empty player ---");
         MusicPlayer emptyPlayer = new MusicPlayer();
-        System.out.println("next: " + (emptyPlayer.next() != null ? emptyPlayer.next().title : "null"));
-        System.out.println("back: " + (emptyPlayer.back() != null ? emptyPlayer.back().title : "null"));
+        Song emptyNext = emptyPlayer.next();
+        System.out.println("next: " + (emptyNext != null ? emptyNext.title : "null"));
+        Song emptyBack = emptyPlayer.back();
+        System.out.println("back: " + (emptyBack != null ? emptyBack.title : "null"));
         System.out.println("now playing: " + (emptyPlayer.nowPlaying() != null ? emptyPlayer.nowPlaying().title : "null"));
         System.out.println("playlist: " + emptyPlayer.showPlaylist());
     }
