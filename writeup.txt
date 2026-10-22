@@ -1,0 +1,39 @@
+Method          Structures touches                            Big-O             Reason    
+addSong()       Playlist, library map                         O(1) average      Append at the tail and insert into the hashmap
+findSong()      Library map                                   O(1) average      Look up the ID in the hash map.
+play()          Library map, history, play counts             O(1) average      Map lookup, stack push, and count update.
+queueLater      upNext deque, library map                     O(1) average      Check the ID, then add at the back.
+queueNext()     upNext deque, library map                     O(1) average      Check the ID, then add at the front.
+next()          upNext deque/playlist, history play counts    O(k) worst case   It may skip k removed songs in the queue; playlist movement is O(1).   
+back()          History stack, upNext deque, play counts      O(k) worst case   It may skip k removed songs in history.
+removeSong()    Playlist, library map, play counts            O(1) average      Map lookup/removal and unlinking known node
+showPlaylist()  Playlist                                      O(n) average      It visits each of the n playlist nodes.
+
+
+Part B: Defend two choices
+Pick two of your five structures. For each, write 3 to 5 sentences that answer:
+•
+What job does it do in the player?
+•
+What would get slower or harder if you swapped it for a plain array?
+•
+If you reused a built-in, what does it cost compared with building your own?
+Write it the way you would say it in an interview.
+"I used a deque because both ends are O(1)" is stronger
+than "I used a deque because it seemed right.
+
+
+Doubly Linked List:
+The point of the doubly linked list is to have the songs in the order of my playlist. It acts as my actual playlist
+where I can go to the next song and previous song. Also since every node has a .prev and .next pointer I can unlinking
+a song anywhere in the playlist in O(1) constant time without using a loop. I built the link list myself so there is no 
+built in collection cost to compare.
+
+Hashmap:
+I used a Hashmpa because it provides an insant lookup of a song in O(1) constant time. It maps song's IDs directly to
+their playlist nodes. So instead of scanning through a list or an array in O(n) time to find a song my Hashmap allows
+me to just jump straight to the track, and this allows me to locate and validate songs without any lag when the Library
+grows.
+
+
+
