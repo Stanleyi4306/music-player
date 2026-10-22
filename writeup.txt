@@ -30,7 +30,7 @@ a song anywhere in the playlist in O(1) constant time without using a loop. I bu
 built in collection cost to compare.
 
 Hashmap:
-I used a Hashmpa because it provides an insant lookup of a song in O(1) constant time. It maps song's IDs directly to
+I used a Hashmap because it provides an instant lookup of a song in O(1) constant time. It maps song's IDs directly to
 their playlist nodes. So instead of scanning through a list or an array in O(n) time to find a song my Hashmap allows
 me to just jump straight to the track, and this allows me to locate and validate songs without any lag when the Library
 grows.
